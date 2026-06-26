@@ -6,6 +6,15 @@ Context for coding agents working in this repo.
 `sprig-demo` is a small TypeScript invoicing toolkit (subtotal -> discount -> tax).
 Pure functions in `src/`, tests in `tests/`. No framework, no network calls.
 
+## Money convention (load-bearing)
+- **All monetary amounts are integer cents.** `1000` means $10.00. Prices, subtotals,
+  tax, discounts, and totals are whole numbers of cents — never floating-point dollars.
+- **Never do money math in floating-point dollars.** Float arithmetic drifts and loses
+  pennies (`0.1 + 0.2 !== 0.3`). Keep every intermediate value in integer cents.
+- **Convert to dollars only at the display edge**, via `formatUSD` in `currency.ts`.
+- **When dividing money that does not split evenly, give the leftover cents to the
+  earliest shares**, so the parts always sum back to the exact whole.
+
 ## Commands
 - Install: `npm install`
 - Run: `npm start`

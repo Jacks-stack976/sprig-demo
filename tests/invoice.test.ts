@@ -2,22 +2,22 @@ import { describe, it, expect } from "vitest";
 import { subtotal, invoiceTotal } from "../src/invoice";
 
 describe("invoice", () => {
-  it("sums line items", () => {
+  it("sums line items (in cents)", () => {
     expect(
       subtotal([
-        { description: "a", quantity: 2, unitPrice: 10 },
-        { description: "b", quantity: 1, unitPrice: 5 },
+        { description: "a", quantity: 2, unitPriceCents: 1000 },
+        { description: "b", quantity: 1, unitPriceCents: 500 },
       ]),
-    ).toBe(25);
+    ).toBe(2500);
   });
   it("applies discount then tax", () => {
-    // 25 -> -10% = 22.5 -> +8% = 24.3
+    // 2500c -> -10% = 2250c -> +8% = 2430c
     expect(
       invoiceTotal({
-        items: [{ description: "a", quantity: 5, unitPrice: 5 }],
+        items: [{ description: "a", quantity: 5, unitPriceCents: 500 }],
         taxRate: 0.08,
         discountPct: 0.1,
       }),
-    ).toBe(24.3);
+    ).toBe(2430);
   });
 });

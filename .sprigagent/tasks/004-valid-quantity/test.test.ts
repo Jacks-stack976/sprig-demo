@@ -1,7 +1,7 @@
 import { describe, it, expect } from "vitest";
-import { isValidQuantity } from "../../src/validate";
+import { isValidQuantity } from "../../../src/validate";
 
-describe("task-04 isValidQuantity", () => {
+describe("task-004 isValidQuantity", () => {
   it("accepts positive integers", () => {
     expect(isValidQuantity(3)).toBe(true);
   });

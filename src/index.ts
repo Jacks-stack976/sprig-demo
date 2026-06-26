@@ -3,8 +3,8 @@ import { formatUSD } from "./currency";
 
 const total = invoiceTotal({
   items: [
-    { description: "Consulting (hrs)", quantity: 10, unitPrice: 150 },
-    { description: "License seat", quantity: 3, unitPrice: 49.99 },
+    { description: "Consulting (hrs)", quantity: 10, unitPriceCents: 15000 },
+    { description: "License seat", quantity: 3, unitPriceCents: 4999 },
   ],
   taxRate: 0.08,
   discountPct: 0.1,

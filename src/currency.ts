@@ -1,16 +1,27 @@
 // Money helpers for the invoicing toolkit.
-// Amounts are handled in whole cents internally to avoid float drift,
-// then formatted for display at the edges.
+// All monetary amounts are integer cents (1000 = $10.00). Floating-point dollars
+// are only used at the display edge, in formatUSD below.
 
-/** Round a decimal amount to 2 places using half-up rounding. */
-export function roundCurrency(amount: number): number {
-  return Math.round((amount + Number.EPSILON) * 100) / 100;
+/**
+ * Round a fractional-cent amount (e.g. the result of a tax or discount calc) to a
+ * whole cent, half-up. Inputs and outputs are in cents.
+ */
+export function roundToCents(amount: number): number {
+  return Math.round(amount + Number.EPSILON);
 }
 
-/** Format an amount as a USD string, e.g. 1234.5 -> "$1,234.50". */
-export function formatUSD(amount: number): string {
+/** Format an integer-cent amount as a USD string, e.g. 123450 -> "$1,234.50". */
+export function formatUSD(cents: number): string {
   return new Intl.NumberFormat("en-US", {
     style: "currency",
     currency: "USD",
-  }).format(roundCurrency(amount));
+  }).format(cents / 100);
+}
+
+/**
+ * Format an integer-cent amount as euros (de-DE locale).
+ * Stub — the coding agent implements this at eval time (task 003).
+ */
+export function formatEUR(cents: number): string {
+  throw new Error(`formatEUR(${cents}) not implemented`);
 }

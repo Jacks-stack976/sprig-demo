@@ -1,9 +1,0 @@
-{
-  "$comment": "Frozen eval suite. SprigAgent runs the coding agent on each prompt, then runs the paired test. Pass rate = task success. Compared baseline-config vs pruned-config.",
-  "tasks": [
-    { "id": "task-01", "prompt": "task-01.md", "test": "task-01.test.ts", "target": "src/invoice.ts" },
-    { "id": "task-02", "prompt": "task-02.md", "test": "task-02.test.ts", "target": "src/discount.ts" },
-    { "id": "task-03", "prompt": "task-03.md", "test": "task-03.test.ts", "target": "src/currency.ts" },
-    { "id": "task-04", "prompt": "task-04.md", "test": "task-04.test.ts", "target": "src/validate.ts" }
-  ]
-}
